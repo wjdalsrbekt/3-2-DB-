@@ -1,0 +1,1104 @@
+<?php
+ include_once 'dbconfig.php';
+   $dbname="project";
+   mysqli_select_db($conn, $dbname) or die('DB selection failed');
+   $query ="select * from logindata order by ID desc";
+    $result = $conn->query($query);
+    $total = mysqli_num_rows($result);
+   session_start();?>
+<!--$team_db=<<<'EOT'-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ninodezign.com, ninodezign@gmail.com">
+    <meta name="copyright" content="ninodezign.com">
+    <title>Mogo | OnePage Responsive Theme</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/ico/favicon.jpg">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css" />
+    <link rel="stylesheet" type="text/css" href="css/unslider.css" />
+    <link rel="stylesheet" type="text/css" href="css/template.css" />
+
+</head>
+
+<body data-target="#nino-navbar" data-spy="scroll">
+
+    <!-- Header
+    ================================================== -->
+    <header id="nino-header">
+        <div id="nino-headerInner">
+            <nav id="nino-navbar" class="navbar navbar-default" role="navigation">
+                <div class="container">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nino-navbar-collapse">
+                     <span class="sr-only">Toggle navigation</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                  </button>
+                        <a class="navbar-brand" href="homepage.html">Greate</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="nino-menuItem pull-right">
+                        <div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#nino-header">Home <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#nino-story">공지사항</a></li>
+                                <li><a href="#nino-services">서비스</a></li>
+                                <li><a href="#nino-ourTeam">시간예약</a></li>
+                                <li><a href="#nino-portfolio">상품판매</a></li>
+                                <li><a href="#nino-latestBlog">SNS</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <ul class="nino-iconsGroup nav navbar-nav">                    
+                            <li><a><?php
+                     if(isset($_SESSION['userid'])) {
+                        echo $_SESSION['userid'];
+                     ?>님 안녕하세요</a></li>
+                     <li><a onclick="location.href='./logout.php'">Logout</a></li>
+                     <?php
+                           }
+                           else{
+                     ?><li><a href="#" class="nino-search">Login</a></li>
+                     <?php }
+                     ?>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            <section id="nino-slider" class="carousel slide container" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <h2 class="nino-sectionHeading">
+                            <span class="nino-subHeading">Beauty Salon</span> Welcome <br>to Create
+                        </h2>
+                    </div>
+                    <div class="item">
+                        <h2 class="nino-sectionHeading">
+                            <span class="nino-subHeading">
+							<img src="salon_image1.jpg">
+							</span>
+                        </h2>
+                    </div>
+                    <div class="item">
+                        <h2 class="nino-sectionHeading">
+                            <span class="nino-subHeading">
+							<img src="salon_image2.jpg">
+							</span>
+                        </h2>
+                    </div>
+                    <div class="item">
+                        <h2 class="nino-sectionHeading">
+                            <span class="nino-subHeading">
+							<img src="salon_image3.jpg">
+							</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators clearfix">
+                    <li data-target="#nino-slider" data-slide-to="0" class="active">
+                        <div class="inner">
+                            <span class="number">01</span> main
+                        </div>
+                    </li>
+                    <li data-target="#nino-slider" data-slide-to="1">
+                        <div class="inner">
+                            <span class="number">02</span> interior1
+                        </div>
+                    </li>
+                    <li data-target="#nino-slider" data-slide-to="2">
+                        <div class="inner">
+                            <span class="number">03</span> interior2
+                        </div>
+                    </li>
+                    <li data-target="#nino-slider" data-slide-to="3">
+                        <div class="inner">
+                            <span class="number">04</span> interior3
+                        </div>
+                    </li>
+                </ol>
+            </section>
+        </div>
+    </header>
+    <!--/#header-->
+
+    <!-- Story About Us
+    ================================================== -->
+    <section id="nino-story">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">Today's</span> 공지사항
+            </h2>
+            <p class="nino-sectionDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="sectionContent">
+                <div class="row nino-hoverEffect";>
+               <a href="#post"; style="border:1px solid; padding: 20px;">글쓰기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-story-->
+
+    <!-- Counting
+    ================================================== -->
+    <section id="nino-counting">
+        <div class="container">
+            <div layout="row" class="verticalStretch">
+                <div class="item">
+                    <div class="number">42</div>
+                    <div class="text">Web Design Projects</div>
+                </div>
+                <div class="item">
+                    <div class="number">123</div>
+                    <div class="text">happy client</div>
+                </div>
+                <div class="item">
+                    <div class="number">15</div>
+                    <div class="text">award winner</div>
+                </div>
+                <div class="item">
+                    <div class="number">99</div>
+                    <div class="text">cup of coffee</div>
+                </div>
+                <div class="item">
+                    <div class="number">24</div>
+                    <div class="text">members</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-counting-->
+
+    <!-- Services
+    ================================================== -->
+    <section id="nino-services">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">We povide</span> Amazing Services
+            </h2>
+            <div class="sectionContent">
+                <div class="fw" layout="row">
+                    <div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">남성 헤어커트</h4>
+                                <p> 가격 : 10,000원 </br> 남성 손님분들의 머리를 단정하게 잘라드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">여성 헤어커트</h4>
+                                <p> 가격 : 10,000원 </br> 여성 손님분들의 머리를 단정하게 잘라드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">짧은 머리 파마</h4>
+                                <p> 가격 : 30,000원 </br> 머리길이가 짧은 손님분들이 원하는 정도의 굵기로 펌을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">긴 머리 파마</h4>
+                                <p> 가격 : 50,000원 </br> 머리길이가 긴 손님분들이 원하는 정도의 굵기로 펌을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">염색</h4>
+                                <p> 가격 : 80,000원 </br> 손님분들이 원하는 색상으로 염색을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">뿌리염색</h4>
+                                <p> 가격 : 30,000원 </br> 뿌리 염색을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">짧은 머리 매직</h4>
+                                <p> 가격 : 60,000원 </br> 머리길이가 짧은 손님분들의 머리를 펴드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">긴 머리 매직</h4>
+                                <p> 가격 : 120,000원 </br> 머리길이가 긴 손님분들이 머리를 펴드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">짧은 머리 아이롱펌</h4>
+                                <p> 가격 : 80,000원 </br> 머리길이가 짧은 손님분들에게 아이롱 펌을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">긴 머리 아이롱펌</h4>
+                                <p> 가격 : 130,000원 </br> 머리길이가 긴 손님분들에게 아이롱 펌을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">짧은 머리 핫핀펌</h4>
+                                <p> 가격 : 40,000원 </br> 머리길이가 짧은 손님분들에게 핫핀펌을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 item ">
+                        <div layout="row">
+                            <i class="mdi mdi-buffer nino-icon fsr"></i>
+                            <div>
+                                <h4 class="nino-serviceTitle">긴 머리 핫핀펌</h4>
+                                <p> 가격 : 90,000원 </br> 머리길이가 긴 손님분들에게 핫핀펌을 해드립니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-services-->
+
+    <!-- Unique Design
+    ================================================== -->
+    <section id="nino-uniqueDesign">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">For all devices</span> Unique design
+            </h2>
+            <div class="sectionContent">
+                <div class="nino-devices">
+                    <img class="tablet" src="images/unique-design/img-1.png" alt="">
+                    <img class="mobile" src="images/unique-design/img-2.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-uniqueDesign-->
+
+    <!-- What We Do
+    ================================================== -->
+    <section id="nino-whatWeDo">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">Service</span> what we do
+            </h2>
+            <p class="nino-sectionDesc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="sectionContent">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <img src="images/what-we-do/img-1.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="mdi mdi-chevron-up nino-icon arrow"></i>
+                                            <i class="mdi mdi-camera nino-icon"></i> Photography
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                        craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                                        ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                        shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                        synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <i class="mdi mdi-chevron-up nino-icon arrow"></i>
+                                            <i class="mdi mdi-owl nino-icon"></i> creativity
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                        craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                                        ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                        shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                        synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <i class="mdi mdi-chevron-up nino-icon arrow"></i>
+                                            <i class="mdi mdi-laptop-mac nino-icon"></i> web design
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="panel-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+                                        on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
+                                        craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                                        ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                        shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic
+                                        synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-whatWeDo-->
+
+    <!-- Testimonial
+    ================================================== -->
+    <section class="nino-testimonial">
+        <div class="container">
+            <div class="nino-testimonialSlider">
+                <ul>
+                    <li>
+                        <div layout="row">
+                            <div class="nino-symbol fsr">
+                                <i class="mdi mdi-comment-multiple-outline nino-icon"></i>
+                            </div>
+                            <div>
+                                <p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
+                                <span class="name">Jon Doe</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div layout="row">
+                            <div class="nino-symbol fsr">
+                                <i class="mdi mdi-wechat nino-icon"></i>
+                            </div>
+                            <div>
+                                <p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
+                                <span class="name">Jon Doe</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div layout="row">
+                            <div class="nino-symbol fsr">
+                                <i class="mdi mdi-message-text-outline nino-icon"></i>
+                            </div>
+                            <div>
+                                <p class="quote">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."</p>
+                                <span class="name">Jon Doe</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-testimonial-->
+
+    <!-- Our Team
+    ================================================== -->
+    <section id="nino-ourTeam">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">Artist</span> 미용사 선택
+            </h2>
+            <p class="nino-sectionDesc">
+                마음에 드는 미용사와 원하는 서비스를 선택하세요.
+            </p>
+            <div class="sectionContent">
+                <div class="row nino-hoverEffect">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="overlay" href="#">
+                                <div class="content">
+                                    <a href="#" class="nino-icon" id="button1" onclick="button1_click();"><i>SELECT</i></a>
+									<script>
+										function button1_click() {
+											var userName = prompt("예약날짜는 언제로 하겠습니까?");
+										}
+									</script>
+									
+                                </div>
+                                <img src="images/our-team/img-1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h4 class="name">이강령</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="overlay" href="#">
+                                <div class="content">
+                                    <a href="#" class="nino-icon"><i>SELECT</i></a>
+                                </div>
+                                <img src="images/our-team/img-2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h4 class="name">김일환</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="item">
+                            <div class="overlay" href="#">
+                                <div class="content">
+                                    <a href="#" class="nino-icon"><i>SELECT</i></a>
+                                </div>
+                                <img src="images/our-team/img-3.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="info">
+                            <h4 class="name">정민규</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-ourTeam-->
+
+    <!-- Brand
+    ================================================== -->
+    <section id="nino-brand">
+        <div class="container">
+            <div class="verticalCenter fw" layout="row">
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <a href="#"><img src="images/brand/img-1.png" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <a href="#"><img src="images/brand/img-2.png" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <a href="#"><img src="images/brand/img-3.png" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <a href="#"><img src="images/brand/img-4.png" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <a href="#"><img src="images/brand/img-5.png" alt=""></a>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6">
+                    <a href="#"><img src="images/brand/img-6.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-brand-->
+
+    <!-- Portfolio
+    ================================================== -->
+    <section id="nino-portfolio">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">What we do</span> some of our work
+            </h2>
+            <p class="nino-sectionDesc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+        </div>
+        <div class="sectionContent">
+            <ul class="nino-portfolioItems">
+                <li class="item" onclick="itembut_1_click();" >
+					<script>
+							function itembut_1_click() {
+							var item1 = prompt("몇개를 요청하시겠습니까?");
+								if(item1 == null || item1 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item1 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+					<a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_1_click();" >
+						<img src="images/our-work/item-1.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+									//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 1;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                <li class="item" >
+					<script>
+							function itembut_2_click() {
+							var item2 = prompt("몇개를 요청하시겠습니까?");
+								if(item2 == null || item2 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item2 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+					<a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_2_click();">
+						<img src="images/our-work/item-2.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 2;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                <li class="item">
+					<script>
+							function itembut_3_click() {
+							var item3 = prompt("몇개를 요청하시겠습니까?");
+								if(item3 == null || item3 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item3 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+                    <a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_3_click();">
+						<img src="images/our-work/item-3.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 3;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+				<li class="item">
+					<script>
+							function itembut_4_click() {
+							var item4 = prompt("몇개를 요청하시겠습니까?");
+								if(item4 == null || item4 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item4 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+                    <a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_4_click();">
+						<img src="images/our-work/item-4.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 4;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                <li class="item" >
+					<script>
+							function itembut_5_click() {
+							var item5 = prompt("몇개를 요청하시겠습니까?");
+								if(item5 == null || item5 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item5 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+                    <a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_5_click();">
+						<img src="images/our-work/item-5.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 5;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                <li class="item" >
+					<script>
+							function itembut_6_click() {
+							var item6 = prompt("몇개를 요청하시겠습니까?");
+								if(item6 == null || item6 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item6 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+                    <a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_6_click();">
+						<img src="images/our-work/item-6.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 6;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                <li class="item" >
+					<script>
+							function itembut_7_click() {
+							var item7 = prompt("몇개를 요청하시겠습니까?");
+								if(item7 == null || item7 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item7 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+                    <a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_7_click();">
+						<img src="images/our-work/item-7.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 7;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                <li class="item" >
+					<script>
+							function itembut_8_click() {
+							var item1 = prompt("몇개를 요청하시겠습니까?");
+								if(item8 == null || item8 == "0") {
+									alert("취소하셨습니다.");
+								} else {
+									alert(item8 + "개 요청 되었습니다");
+								}
+							}
+					</script>
+                    <a class="nino-prettyPhoto" title="Development Mobile" onclick="itembut_8_click();">
+						<img src="images/our-work/item-8.jpg">
+						<div class="overlay">
+							<div class="content">
+								<?php
+								//<i class="mdi mdi-crown nino-icon"></i>
+									$query = "select * from item WHERE ID = 8;";
+									$result = $conn->query($query);
+									$row = mysqli_fetch_array($result);
+									printf("<h4 class='title'>%s</h4>",$row["COMPANY"]);
+									printf("<span class='desc'>%s</span></br>",$row["NAME"]);
+									printf("<span class='desc'>가격 : %s</span>",$row["PRICE"]);
+								?>
+							</div>
+						</div>
+					</a>
+                </li>
+                
+            </ul>
+        </div>
+    </section>
+    <!--/#nino-testimonial-->
+
+    <!-- Happy Client
+    ================================================== -->
+    <section id="nino-happyClient">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">Happy Clients</span> What people say
+            </h2>
+            <div class="sectionContent">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div layout="row" class="item">
+                            <div class="nino-avatar fsr">
+                                <img class="img-circle" src="images/happy-client/img-1.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4 class="name">Matthew Dix</h4>
+                                <span class="regency">Graphic Design</span>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo illo cupiditate temporibus sapiente, sint, voluptatibus tempora esse. Consectetur voluptate nihil quo nulla voluptatem dolorem harum nostrum
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div layout="row" class="item">
+                            <div class="nino-avatar fsr">
+                                <img class="img-circle" src="images/happy-client/img-2.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4 class="name">Nick Karvounis</h4>
+                                <span class="regency">Graphic Design</span>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo illo cupiditate temporibus sapiente, sint, voluptatibus tempora esse. Consectetur voluptate nihil quo nulla voluptatem dolorem harum nostrum
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div layout="row" class="item">
+                            <div class="nino-avatar fsr">
+                                <img class="img-circle" src="images/happy-client/img-3.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4 class="name">Jaelynn Castillo</h4>
+                                <span class="regency">Graphic Design</span>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo illo cupiditate temporibus sapiente, sint, voluptatibus tempora esse. Consectetur voluptate nihil quo nulla voluptatem dolorem harum nostrum
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div layout="row" class="item">
+                            <div class="nino-avatar fsr">
+                                <img class="img-circle" src="images/happy-client/img-4.jpg" alt="">
+                            </div>
+                            <div class="info">
+                                <h4 class="name">Mike Petrucci</h4>
+                                <span class="regency">Graphic Design</span>
+                                <p class="desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo illo cupiditate temporibus sapiente, sint, voluptatibus tempora esse. Consectetur voluptate nihil quo nulla voluptatem dolorem harum nostrum
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-happyClient-->
+
+    <!-- Latest Blog
+    ================================================== -->
+    <section id="nino-latestBlog">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <span class="nino-subHeading">Our stories</span> Latest Blog
+            </h2>
+            <div class="sectionContent">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <article>
+                            <div class="articleThumb">
+                                <a href="#"><img src="images/our-blog/img-1.jpg" alt=""></a>
+                                <div class="date">
+                                    <span class="number">15</span>
+                                    <span class="text">Jan</span>
+                                </div>
+                            </div>
+                            <h3 class="articleTitle"><a href="">Lorem ipsum dolor sit amet</a></h3>
+                            <p class="articleDesc">
+                                Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                            <div class="articleMeta">
+                                <a href="#"><i class="mdi mdi-eye nino-icon"></i> 543</a>
+                                <a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 15</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <article>
+                            <div class="articleThumb">
+                                <a href="#"><img src="images/our-blog/img-2.jpg" alt=""></a>
+                                <div class="date">
+                                    <span class="number">14</span>
+                                    <span class="text">Jan</span>
+                                </div>
+                            </div>
+                            <h3 class="articleTitle"><a href="">sed do eiusmod tempor</a></h3>
+                            <p class="articleDesc">
+                                Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                            <div class="articleMeta">
+                                <a href="#"><i class="mdi mdi-eye nino-icon"></i> 995</a>
+                                <a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 42</a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <article>
+                            <div class="articleThumb">
+                                <a href="#"><img src="images/our-blog/img-3.jpg" alt=""></a>
+                                <div class="date">
+                                    <span class="number">12</span>
+                                    <span class="text">Jan</span>
+                                </div>
+                            </div>
+                            <h3 class="articleTitle"><a href="">incididunt ut labore et dolore</a></h3>
+                            <p class="articleDesc">
+                                Elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                            <div class="articleMeta">
+                                <a href="#"><i class="mdi mdi-eye nino-icon"></i> 1264</a>
+                                <a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 69</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-latestBlog-->
+
+    <!-- Map
+    ================================================== -->
+    <section id="nino-map">
+        <div class="container">
+            <h2 class="nino-sectionHeading">
+                <i class="mdi mdi-map-marker nino-icon"></i>
+                <span class="text">Open map</span>
+                <span class="text" style="display: none;">Close map</span>
+            </h2>
+            <div class="mapWrap">
+                <iframe src="https://maps.google.com/maps?q=%EC%84%9C%EC%B2%9C%20%EC%9E%A5%ED%95%AD%EC%9D%8D%20%EC%84%B1%EC%A3%BC%EB%A6%AC%20278-2&t=&z=13&ie=UTF8&iwloc=&output=embed" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+    <!--/#nino-map-->
+
+    <!-- Footer
+    ================================================== -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="colInfo">
+                        <div class="footerLogo">
+                            <a href="#">MoGo</a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <div class="nino-followUs">
+                            <div class="totalFollow"><span>15k</span> followers</div>
+                            <div class="socialNetwork">
+                                <span class="text">Follow Us: </span>
+                                <a href="" class="nino-icon"><i class="mdi mdi-facebook"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-twitter"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-instagram"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-pinterest"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-google-plus"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-youtube-play"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-dribbble"></i></a>
+                                <a href="" class="nino-icon"><i class="mdi mdi-tumblr"></i></a>
+                            </div>
+                        </div>
+                        <form action="" class="nino-subscribeForm">
+                            <div class="input-group input-group-lg">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                                <span class="input-group-btn">
+                           <button class="btn btn-success" type="submit">Subscribe</button>
+                        </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="colInfo">
+                        <h3 class="nino-colHeading">Blogs</h3>
+                        <ul class="listArticles">
+                            <li layout="row" class="verticalCenter">
+                                <a class="articleThumb fsr" href="#"><img src="images/our-blog/img-4.jpg" alt=""></a>
+                                <div class="info">
+                                    <h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
+                                    <div class="date">Jan 9, 2016</div>
+                                </div>
+                            </li>
+                            <li layout="row" class="verticalCenter">
+                                <a class="articleThumb fsr" href="#"><img src="images/our-blog/img-5.jpg" alt=""></a>
+                                <div class="info">
+                                    <h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
+                                    <div class="date">Jan 9, 2016</div>
+                                </div>
+                            </li>
+                            <li layout="row" class="verticalCenter">
+                                <a class="articleThumb fsr" href="#"><img src="images/our-blog/img-6.jpg" alt=""></a>
+                                <div class="info">
+                                    <h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
+                                    <div class="date">Jan 9, 2016</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="colInfo">
+                        <h3 class="nino-colHeading">instagram</h3>
+                        <div class="instagramImages clearfix">
+                            <a href="#"><img src="images/instagram/img-1.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-2.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-3.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-4.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-5.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-6.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-7.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-8.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-9.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-3.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-4.jpg" alt=""></a>
+                            <a href="#"><img src="images/instagram/img-5.jpg" alt=""></a>
+                        </div>
+                        <a href="#" class="morePhoto">View more photos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="nino-copyright">Copyright &copy; 2016 <a target="_blank" href="http://www.ninodezign.com/" title="Ninodezign.com - Top quality open source resources for web developer and web designer">Ninodezign.com</a>. All Rights Reserved. <br/> MoGo free PSD template
+                by <a href="https://www.behance.net/laaqiq">Laaqiq</a></div>
+        </div>
+    </footer>
+    <!--/#footer-->
+
+    <!-- Search Form - Display when click magnify icon in menu
+    ================================================== -->
+    <form method='get' action="login_action.php" id="nino-searchForm">
+      <p>ID</p>
+      <input style="width:350px;height:60px;font-size:30px;" type="text" name="id">
+      <br/><br/>
+      <p>PW</p>
+      <input style="width:350px;height:60px;font-size:30px;" type="password" name="pw">
+      <br/><br/>
+      <button type ="button" onclick="location.href='join.php'" style="width:175px;height:40px;font-size:15px;background-color:gray;color:white;">회원가입</button>
+      <!--<button type ="button" onclick="location.href='login.php'" style="width:175px;height:40px;font-size:15px;background-color:gray;color:white;">회원가입</button>-->
+      
+      <button style="width:175px;height:40px;font-size:15px;background-color:gray;color:white;"type="submit" value="로그인">로그인</button>
+      
+        <i class="mdi mdi-close nino-close"></i>
+    </form>
+    <form action="" id="nino-serviceForm">
+		
+        <i class="mdi mdi-close nino-close"></i>
+    </form>
+    <!--/#nino-searchForm-->
+
+    <!-- Scroll to top
+    ================================================== -->
+    <a href="#" id="nino-scrollToTop">Go to Top</a>
+
+    <!-- javascript -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+    <script type="text/javascript" src="js/modernizr.custom.97074.js"></script>
+    <script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="js/unslider-min.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+    <!-- css3-mediaqueries.js for IE less than 9 -->
+    <!--[if lt IE 9]>
+       <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+   <![endif]-->
+
+</body>
+
+</html>
+<!-- EOT;echo $team_db;?> -->
